@@ -120,8 +120,6 @@ function manager(){
         const newManager = new Manager(data.name, data.employeeId, data.email, data.office);
 
         write(newManager, data.office);
-
-        console.log(newManager);
         menuOptions();
     });
 }
@@ -134,7 +132,6 @@ function engineer(){
         const newEngineer = new Engineer(data.name, data.employeeId, data.email, data.gitHub);
         
         htmlAppend(newEngineer, newEngineer.getRole(), newEngineer.getGithub());
-        console.log(newEngineer);
         menuOptions();
     });
 }
@@ -147,7 +144,6 @@ function intern(){
         const newIntern = new Intern(data.name, data.employeeId, data.email, data.school);
 
         htmlAppend(newIntern, newIntern.getRole(), newIntern.getSchool());
-        console.log(newIntern);
         menuOptions();
     });
 }
@@ -181,8 +177,7 @@ function write(employee, office){
     </div>`;
 
     fs.writeFile('dist/index.html', output, (err) =>
-        err ? console.log(err) : console.log("Saved Manager File!")
-);
+        err ? console.log(err) : console.log());
 }
 
 function htmlAppend(employee, title, wildCard){
@@ -227,7 +222,6 @@ function htmlAppend(employee, title, wildCard){
 
     fs.appendFile("dist/index.html", output, function (err) {
         if (err) throw err;
-        console.log('Appended intern/engineer');
       });
 }
 
@@ -240,8 +234,7 @@ htmlOutput =
 `
     fs.appendFile("dist/index.html", htmlOutput, function (err) {
         if (err) throw err;
-        console.log('Appended Finisher File!');
-      });
+    });
 
 
 cssOutput =
@@ -290,8 +283,7 @@ header{
 }
 `      
     fs.writeFile('dist/styles.css', cssOutput, (err) =>
-    err ? console.log(err) : console.log("Saved CSS File!")
-);
+    err ? console.log(err) : console.log());
 }
 
 manager();
