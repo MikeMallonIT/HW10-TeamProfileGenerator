@@ -2,11 +2,12 @@
 const fs = require('fs');
 var inquirer = require('inquirer');
 
-
+// Require classes
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+// Main manu questions
 const menu = [
     {
         type: 'list',
@@ -16,6 +17,7 @@ const menu = [
     }
 ]
 
+// Questions about the manager
 const managerQuestions = [
     
     {
@@ -40,6 +42,7 @@ const managerQuestions = [
     }
 ];
 
+// Questions about a engineer
 const engineerQuestions = [
     
     {
@@ -64,6 +67,7 @@ const engineerQuestions = [
     }
 ];
 
+// Questions about an Intern
 const internQuestions = [
     
     {
@@ -88,6 +92,7 @@ const internQuestions = [
     }
 ];
 
+// Main menu function
 function menuOptions() {
     
     inquirer
@@ -111,43 +116,56 @@ function menuOptions() {
         });
 }
 
+// Manager function for collecting information about the manager. Creates new manager object and sends data to write function
 function manager(){
 
     inquirer
         .prompt(managerQuestions)
 
     .then((data) => {
+        // Manager constructor
         const newManager = new Manager(data.name, data.employeeId, data.email, data.office);
 
+        // Send data to be written
         write(newManager, data.office);
+        // Show main manu
         menuOptions();
     });
 }
 
+// Engineer function for collecting information about a engineer. Creates new engineer object and sends data to append function where it will be added to the HTML file
 function engineer(){
     inquirer
         .prompt(engineerQuestions)
 
     .then((data) => {
+        // Engineer constructor
         const newEngineer = new Engineer(data.name, data.employeeId, data.email, data.gitHub);
         
+        // Send data to be written
         htmlAppend(newEngineer, newEngineer.getRole(), newEngineer.getGithub());
+        // Show main manu
         menuOptions();
     });
 }
 
+// Intern function for collecting information about a intern. Creates new intern object and sends data to append function where it will be added to the HTML file
 function intern(){
     inquirer
         .prompt(internQuestions)
 
     .then((data) => {
+        // Intern constructor
         const newIntern = new Intern(data.name, data.employeeId, data.email, data.school);
 
+        // Send data to be written
         htmlAppend(newIntern, newIntern.getRole(), newIntern.getSchool());
+        // Show main manu
         menuOptions();
     });
 }
 
+// Write base HTML file including: header and manager
 function write(employee, office){
 
     output =    
@@ -176,14 +194,17 @@ function write(employee, office){
         </div>
     </div>`;
 
+    // Create the HTML file
     fs.writeFile('dist/index.html', output, (err) =>
         err ? console.log(err) : console.log());
 }
 
+// Add additional employees to the HTML file
 function htmlAppend(employee, title, wildCard){
 
     let output = "";
 
+    // Build Engineer HTML code
     if(title == "Engineer"){
         output = 
 `
@@ -200,6 +221,7 @@ function htmlAppend(employee, title, wildCard){
 `;
 
     }
+    // Build Intern HTML code
     else if(title == "Intern"){
         output = 
 `
@@ -219,12 +241,13 @@ function htmlAppend(employee, title, wildCard){
         console.log("Role selection if/ else error");
     }
 
-
+    // Add Engineer or Intern code to the end of the HTML doc
     fs.appendFile("dist/index.html", output, function (err) {
         if (err) throw err;
       });
 }
 
+// Function for ending the HTML doc and building the CSS file
 function htmlFinisher(){
 
 htmlOutput = 
@@ -286,4 +309,5 @@ header{
     err ? console.log(err) : console.log());
 }
 
+// Start the application by asking for information about the manager
 manager();
