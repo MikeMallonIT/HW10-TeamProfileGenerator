@@ -31,7 +31,7 @@ Download all associated files in this repository. Install Node.js then use the `
 <br>
 
 ### See project tutorials:
-- [Run Part 1](https://watch.screencastify.com/v/UFPLMIMd5MluOq41d6tQ)
+- [Run](https://watch.screencastify.com/v/wyBs9UQS5ZxLy0ns9egQ)
 - [Tests](https://watch.screencastify.com/v/UFPLMIMd5MluOq41d6tQ)
 
 <br />
