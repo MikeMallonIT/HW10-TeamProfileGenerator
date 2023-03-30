@@ -17,6 +17,7 @@ This was the first step twards buinding an application that renders HTML by itse
 Download all associated files in this repository. Install Node.js then use the `npm install` function. After that, CD to the directory the root application folder is installed in and use the `node index.js` function.
 
 The website should look like this:
+
 ![Website Screen Shot](./dist/testRun.png)
 
 ### See project tutorials:
